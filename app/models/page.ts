@@ -1,10 +1,10 @@
 import { column, hasMany } from '@adonisjs/lucid/orm'
 import BasicModel from './base.js'
 import { randomUUID } from 'node:crypto'
-import Widgets from './widgets.js'
+import Widget from './widget.js'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 
-export default class Pages extends BasicModel {
+export default class Page extends BasicModel {
   @column()
   declare type: string
 
@@ -20,6 +20,6 @@ export default class Pages extends BasicModel {
   @column({ prepare: (value: string) => (value ? value : randomUUID()) })
   declare uuid: string
 
-  @hasMany(() => Widgets)
-  declare category: HasMany<typeof Widgets>
+  @hasMany(() => Widget)
+  declare widgets: HasMany<typeof Widget>
 }

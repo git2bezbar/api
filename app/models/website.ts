@@ -1,13 +1,13 @@
-import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
-import { column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
+import type { HasMany } from '@adonisjs/lucid/types/relations'
+import { column, hasMany } from '@adonisjs/lucid/orm'
 
 import BasicModel from './base.js'
-import Attachments from './attachments.js'
-import TimeSlots from './time_slots.js'
-import SocialLinks from './social_links.js'
-import Pages from './page.js'
-import Products from './products.js'
-import Users from './users.js'
+import Attachment from './attachment.js'
+import TimeSlot from './time_slot.js'
+import SocialLink from './social_link.js'
+import Page from './page.js'
+import Product from './product.js'
+import User from './user.js'
 
 export default class Websites extends BasicModel {
   @column()
@@ -61,21 +61,21 @@ export default class Websites extends BasicModel {
   @column()
   declare footer_layout: string
 
-  @manyToMany(() => Attachments)
-  declare websites: ManyToMany<typeof Attachments>
+  @hasMany(() => Attachment)
+  declare websites: HasMany<typeof Attachment>
 
-  @hasMany(() => TimeSlots)
-  declare time_slots: HasMany<typeof TimeSlots>
+  @hasMany(() => TimeSlot)
+  declare time_slots: HasMany<typeof TimeSlot>
 
-  @hasMany(() => SocialLinks)
-  declare social_links: HasMany<typeof SocialLinks>
+  @hasMany(() => SocialLink)
+  declare social_links: HasMany<typeof SocialLink>
 
-  @hasMany(() => Products)
-  declare products: HasMany<typeof Products>
+  @hasMany(() => Product)
+  declare products: HasMany<typeof Product>
 
-  @hasMany(() => Pages)
-  declare pages: HasMany<typeof Pages>
+  @hasMany(() => Page)
+  declare pages: HasMany<typeof Page>
 
-  @hasMany(() => Users)
-  declare users: HasMany<typeof Users>
+  @hasMany(() => User)
+  declare users: HasMany<typeof User>
 }
