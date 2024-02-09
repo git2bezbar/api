@@ -1,7 +1,7 @@
 import { column } from '@adonisjs/lucid/orm'
 import BasicModel from './base.js'
 
-export default class TimeSlots extends BasicModel {
+export default class TimeSlot extends BasicModel {
   @column()
   declare opening_time: string
 

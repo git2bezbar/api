@@ -1,8 +1,7 @@
 import { column } from '@adonisjs/lucid/orm'
 import BasicModel from './base.js'
 
-export default class SocialLinks extends BasicModel {
-  // platform is set as a string but will work as en enum
+export default class SocialLink extends BasicModel {
   @column()
   declare platform: string
 
