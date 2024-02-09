@@ -5,7 +5,7 @@ import BasicModel from './base.js'
 import Attachments from './attachments.js'
 import TimeSlots from './time_slots.js'
 import SocialLinks from './social_links.js'
-import Pages from './page.js'
+import Pages from './pages.js'
 import Products from './products.js'
 import Users from './users.js'
 
