@@ -2,14 +2,14 @@ import type { HasMany } from '@adonisjs/lucid/types/relations'
 import { column, hasMany } from '@adonisjs/lucid/orm'
 
 import BasicModel from './base.js'
-import Attachment from './attachment.js'
+import Attachment from './attachement.js'
 import TimeSlot from './time_slot.js'
 import SocialLink from './social_link.js'
 import Page from './page.js'
 import Product from './product.js'
 import User from './user.js'
 
-export default class Websites extends BasicModel {
+export default class Website extends BasicModel {
   @column()
   declare website_title: string
 

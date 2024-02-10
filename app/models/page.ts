@@ -1,8 +1,9 @@
-import { column, hasMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import { belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
 import BasicModel from './base.js'
 import { randomUUID } from 'node:crypto'
 import Widget from './widget.js'
-import type { HasMany } from '@adonisjs/lucid/types/relations'
+import Website from './website.js'
 
 export default class Page extends BasicModel {
   @column()
@@ -22,4 +23,10 @@ export default class Page extends BasicModel {
 
   @hasMany(() => Widget)
   declare widgets: HasMany<typeof Widget>
+
+  @column()
+  declare website_id: number
+
+  @belongsTo(() => Website)
+  declare category: BelongsTo<typeof Website>
 }
