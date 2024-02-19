@@ -11,22 +11,22 @@ import User from './user.js'
 
 export default class Website extends BasicModel {
   @column()
-  declare website_title: string
+  declare websiteTitle: string
 
   @column()
-  declare website_headline: string
+  declare websiteHeadline: string
 
   @column()
-  declare website_logo: string
+  declare websiteLogo: string
 
   @column()
-  declare website_favicon: string
+  declare websiteFavicon: string
 
   @column()
   declare street: string
 
   @column()
-  declare post_code: string
+  declare postCode: string
 
   @column()
   declare city: string
@@ -35,40 +35,43 @@ export default class Website extends BasicModel {
   declare email: string
 
   @column()
-  declare phone_number: string
+  declare phoneNumber: string
 
   @column()
-  declare header_layout: string
+  declare headerLayout: string
 
   @column()
   declare theme: string
 
   @column()
-  declare primary_color: string
+  declare primaryColor: string
 
   @column()
-  declare secondary_color: string
+  declare secondaryColor: string
 
   @column()
-  declare title_font: string
+  declare titleFont: string
 
   @column()
-  declare text_font: string
+  declare textFont: string
 
   @column()
-  declare button_font: string
+  declare buttonFont: string
 
   @column()
-  declare footer_layout: string
+  declare footerLayout: string
+
+  @column()
+  declare uuid: string
 
   @hasMany(() => Attachment)
-  declare websites: HasMany<typeof Attachment>
+  declare attachments: HasMany<typeof Attachment>
 
   @hasMany(() => TimeSlot)
-  declare time_slots: HasMany<typeof TimeSlot>
+  declare timeSlots: HasMany<typeof TimeSlot>
 
   @hasMany(() => SocialLink)
-  declare social_links: HasMany<typeof SocialLink>
+  declare socialLinks: HasMany<typeof SocialLink>
 
   @hasMany(() => Product)
   declare products: HasMany<typeof Product>

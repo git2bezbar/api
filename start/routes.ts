@@ -7,53 +7,21 @@
 |
 */
 
+const ContactSettingsController = () => import('#controllers/contact_settings_controller')
 import router from '@adonisjs/core/services/router'
 
-router.get('/', async () => {
-  return {
-    hello: 'world',
-  }
-})
+router
+  .group(() => {
+    /**
+     * Contact Settings
+     */
 
-/**
- * Contact Settings
- */
-
-router.group(() => {
-  router.get('/contact-settings', async () => {
-    return {
-      email: 'api@forkee.site',
-      phone_number: '0359741029',
-      social_links: [
-        {
-          platform: 'facebook',
-          url: 'facebook.com/forkee',
-          is_active: true,
-        },
-        {
-          platform: 'twitter',
-          url: 'twitter.com/forkee',
-          is_active: false,
-        },
-        {
-          platform: 'instagram',
-          url: 'instagram.com/forkee',
-          is_active: true,
-        },
-        {
-          platform: 'thefork',
-          url: 'thefork.fr/forkee',
-          is_active: false,
-        },
-        {
-          platform: 'tripadvisor',
-          url: 'tripadvisor.com/forkee',
-          is_active: false,
-        },
-      ],
-    }
+    router.group(() => {
+      router.get('/contact-settings', [ContactSettingsController, 'show'])
+      router.post('/contact-settings', [ContactSettingsController, 'update'])
+    })
   })
-})
+  .prefix('/:uuid')
 
 /**
  * General Settings
