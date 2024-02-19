@@ -15,8 +15,8 @@ export default class SocialLink extends BasicModel {
   declare is_active: boolean
 
   @column()
-  declare website_id: number
+  declare websiteId: number
 
   @belongsTo(() => Website)
-  declare category: BelongsTo<typeof Website>
+  declare website: BelongsTo<typeof Website>
 }
