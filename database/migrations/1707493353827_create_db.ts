@@ -31,6 +31,7 @@ export default class extends BaseSchema {
       table.string('text_font')
       table.string('button_font')
       table.string('footer_layout')
+      table.string('uuid').notNullable()
 
       table.timestamp('created_at')
       table.timestamp('updated_at')
