@@ -8,6 +8,7 @@
 */
 
 const ContactSettingsController = () => import('#controllers/contact_settings_controller')
+const GeneralSettingsController = () => import('#controllers/general_settings_controller')
 import router from '@adonisjs/core/services/router'
 
 router
@@ -20,68 +21,17 @@ router
       router.get('/contact-settings', [ContactSettingsController, 'show'])
       router.post('/contact-settings', [ContactSettingsController, 'update'])
     })
+
+    /**
+     * General Settings
+     */
+
+    router.group(() => {
+      router.get('/general-settings', [GeneralSettingsController, 'show'])
+      router.post('/general-settings', [GeneralSettingsController, 'update'])
+    })
   })
   .prefix('/:uuid')
-
-/**
- * General Settings
- */
-
-router.group(() => {
-  router.get('/general-settings', async () => {
-    return {
-      website_title: 'Forkee',
-      website_headline: 'The best or nothing',
-      website_logo: {
-        filename: 'forkee-logo.png',
-        path: '/img/forkee-logo.png',
-        description: 'Forkee logo',
-      },
-      website_favicon: {
-        filename: 'forkee-favicon.png',
-        path: '/img/forkee-favicon.png',
-        description: 'Forkee favicon',
-      },
-      address: {
-        street: '46 Sente des Radoubs',
-        post_code: '33300',
-        city: 'Bordeaux',
-      },
-      timetable: [
-        {
-          day_of_week: 'Lundi',
-          opening_time: '2002-02-21T08:30:00.000Z',
-          closing_time: '2002-02-21T12:30:00.000Z',
-        },
-        {
-          day_of_week: 'Lundi',
-          opening_time: '2002-02-21T14:30:00.000Z',
-          closing_time: '2002-02-21T17:30:00.000Z',
-        },
-        {
-          day_of_week: 'Mardi',
-          opening_time: '2002-02-21T08:30:00.000Z',
-          closing_time: '2002-02-21T12:30:00.000Z',
-        },
-        {
-          day_of_week: 'Mardi',
-          opening_time: '2002-02-21T14:30:00.000Z',
-          closing_time: '2002-02-21T17:30:00.000Z',
-        },
-        {
-          day_of_week: 'Mercredi',
-          opening_time: '2002-02-21T08:30:00.000Z',
-          closing_time: '2002-02-21T12:30:00.000Z',
-        },
-        {
-          day_of_week: 'Mercredi',
-          opening_time: '2002-02-21T14:30:00.000Z',
-          closing_time: '2002-02-21T17:30:00.000Z',
-        },
-      ],
-    }
-  })
-})
 
 /**
  * Website Customization
