@@ -58,8 +58,7 @@ export default class GeneralSettingsController {
         await TimeSlot.query()
           .where('websiteId', id)
           .where('dayOfWeek', timeSlot.dayOfWeek)
-          // fix that shit
-          .where('slotNumber', timeSlot.slot_number)
+          .where('slotNumber', timeSlot.slotNumber)
           .update({
             openingTime: timeSlot.openingTime,
             closingTime: timeSlot.closingTime,
