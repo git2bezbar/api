@@ -11,6 +11,7 @@ export default class extends BaseSchema {
     this.schema.dropTableIfExists('pages')
     this.schema.dropTableIfExists('widgets')
     this.schema.dropTableIfExists('users')
+    this.schema.dropTableIfExists('users_websites')
 
     this.schema.createTable('websites', (table) => {
       table.increments('id')
@@ -81,6 +82,7 @@ export default class extends BaseSchema {
       table.string('opening_time').notNullable()
       table.string('closing_time').notNullable()
       table.string('day_of_week').notNullable()
+      table.integer('slot_number').notNullable()
       table
         .integer('website_id')
         .unsigned()

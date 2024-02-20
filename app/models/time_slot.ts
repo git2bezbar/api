@@ -6,17 +6,20 @@ import Website from './website.js'
 
 export default class TimeSlot extends BasicModel {
   @column()
-  declare opening_time: string
+  declare openingTime: string
 
   @column()
-  declare closing_time: string
+  declare closingTime: string
 
   @column()
-  declare day_of_week: string
+  declare dayOfWeek: string
 
   @column()
-  declare website_id: number
+  declare slotNumber: number
+
+  @column()
+  declare websiteId: number
 
   @belongsTo(() => Website)
-  declare category: BelongsTo<typeof Website>
+  declare website: BelongsTo<typeof Website>
 }
