@@ -4,19 +4,30 @@ import { belongsTo, column } from '@adonisjs/lucid/orm'
 import BasicModel from './base.js'
 import Page from './page.js'
 
+export interface WidgetContent {
+  title?: string
+  subtitle?: string
+  hasButton?: boolean
+  buttonContent?: string
+  buttonColor?: string
+  buttonLink?: string
+  imagePosition?: 'left' | 'right'
+  image?: number
+}
+
 export default class Widget extends BasicModel {
   @column()
   declare name: string
 
   @column()
-  declare content: object
+  declare content: WidgetContent
 
   @column()
   declare order: number
 
   @column()
-  declare page_id: number
+  declare pageId: number
 
   @belongsTo(() => Page)
-  declare category: BelongsTo<typeof Page>
+  declare page: BelongsTo<typeof Page>
 }

@@ -15,7 +15,7 @@ export default class extends BaseSeeder {
           buttonColor: 'primary',
           buttonLink: 'contact',
         },
-        page_id: 1,
+        pageId: 1,
       },
       {
         name: 'Texte + Image',
@@ -27,7 +27,7 @@ export default class extends BaseSeeder {
           hasButton: false,
           image: 3,
         },
-        page_id: 1,
+        pageId: 1,
       },
       {
         name: 'Texte',
@@ -37,7 +37,7 @@ export default class extends BaseSeeder {
           subtitle: 'Le meilleur du maghreb',
           hasButton: false,
         },
-        page_id: 1,
+        pageId: 1,
       },
     ])
   }
