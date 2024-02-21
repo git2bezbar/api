@@ -16,7 +16,7 @@ export default class Page extends BasicModel {
   declare description: string
 
   @column()
-  declare is_active: boolean
+  declare isActive: boolean
 
   @column({ prepare: (value: string) => (value ? value : randomUUID()) })
   declare uuid: string
@@ -25,8 +25,8 @@ export default class Page extends BasicModel {
   declare widgets: HasMany<typeof Widget>
 
   @column()
-  declare website_id: number
+  declare websiteId: number
 
   @belongsTo(() => Website)
-  declare category: BelongsTo<typeof Website>
+  declare website: BelongsTo<typeof Website>
 }
