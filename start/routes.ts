@@ -11,6 +11,7 @@ const ContactSettingsController = () => import('#controllers/contact_settings_co
 const GeneralSettingsController = () => import('#controllers/general_settings_controller')
 const CustomizationsController = () => import('#controllers/customizations_controller')
 const PagesController = () => import('#controllers/pages_controller')
+const MenusController = () => import('#controllers/menus_controller')
 import router from '@adonisjs/core/services/router'
 
 router
@@ -50,6 +51,15 @@ router
       router.get('/pages', [PagesController, 'index'])
       router.get('/pages/:pageUuid', [PagesController, 'show'])
       router.post('/pages/:pageUuid', [PagesController, 'update'])
+    })
+
+    /**
+     * Menu
+     */
+
+    router.group(() => {
+      router.get('/menu', [MenusController, 'index'])
+      router.post('/menu', [MenusController, 'update'])
     })
   })
   .prefix('/:uuid')
