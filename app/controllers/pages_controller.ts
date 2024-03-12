@@ -17,6 +17,7 @@ export default class PagesController {
     page.widgets.map((widget) => {
       widget.content = JSON.parse(widget.content as string)
     })
+    page.widgets.sort((a, b) => a.order - b.order)
 
     return page
   }
@@ -28,16 +29,16 @@ export default class PagesController {
     const updatedPage = await Page.query().where('uuid', pageUuid).update({
       description: updatedDescription,
     })
+    await page.related('widgets').query().delete()
 
     if (updatedWidgets.length) {
       updatedWidgets.map(async (widget: Widget) => {
-        await page
-          .related('widgets')
-          .query()
-          .where('id', widget.id)
-          .update({
-            content: JSON.stringify(widget.content),
-          })
+        await Widget.create({
+          name: widget.name,
+          order: widget.order,
+          content: widget.content,
+          pageId: page.id,
+        })
       })
     }
     return updatedPage
