@@ -63,7 +63,6 @@ export default class GeneralSettingsController {
 
     if (updatedTimeSlots.length) {
       updatedTimeSlots.map(async (timeSlot: TimeSlot) => {
-        console.log(id, timeSlot, timeSlot.dayOfWeek, timeSlot.slotNumber)
         await TimeSlot.query()
           .where('websiteId', id)
           .where('dayOfWeek', timeSlot.dayOfWeek)
