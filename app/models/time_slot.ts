@@ -20,6 +20,9 @@ export default class TimeSlot extends BasicModel {
   @column()
   declare websiteId: number
 
+  @column()
+  declare isActive: boolean
+
   @belongsTo(() => Website)
   declare website: BelongsTo<typeof Website>
 }

@@ -15,6 +15,15 @@ export default class GeneralSettingsController {
       city,
       timeSlots,
     } = await Website.query().where('uuid', uuid).preload('timeSlots').firstOrFail()
+    const newTimeSlots = timeSlots.map((timeSlot: TimeSlot) => {
+      return {
+        dayOfWeek: timeSlot.dayOfWeek,
+        slotNumber: timeSlot.slotNumber,
+        openingTime: timeSlot.openingTime,
+        closingTime: timeSlot.closingTime,
+        isActive: timeSlot.isActive,
+      }
+    })
     const generalSettings = {
       websiteTitle,
       websiteHeadline,
@@ -23,7 +32,7 @@ export default class GeneralSettingsController {
       street,
       postCode,
       city,
-      timeSlots,
+      timeSlots: newTimeSlots,
     }
 
     return generalSettings
@@ -54,7 +63,6 @@ export default class GeneralSettingsController {
 
     if (updatedTimeSlots.length) {
       updatedTimeSlots.map(async (timeSlot: TimeSlot) => {
-        console.log(id, timeSlot, timeSlot.dayOfWeek, timeSlot.slotNumber)
         await TimeSlot.query()
           .where('websiteId', id)
           .where('dayOfWeek', timeSlot.dayOfWeek)

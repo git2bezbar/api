@@ -12,7 +12,8 @@ export interface WidgetContent {
   buttonColor?: string
   buttonLink?: string
   imagePosition?: 'left' | 'right'
-  image?: number
+  imageAlt?: string
+  image?: number | string
 }
 
 export default class Widget extends BasicModel {

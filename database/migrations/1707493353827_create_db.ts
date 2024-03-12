@@ -83,6 +83,7 @@ export default class extends BaseSchema {
       table.string('closing_time').notNullable()
       table.string('day_of_week').notNullable()
       table.integer('slot_number').notNullable()
+      table.integer('is_active').notNullable()
       table
         .integer('website_id')
         .unsigned()
