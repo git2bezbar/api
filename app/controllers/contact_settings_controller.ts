@@ -6,10 +6,17 @@ export default class ContactSettingsController {
   async show({ params }: HttpContext) {
     const { uuid } = params
     const website = await Website.query().where('uuid', uuid).preload('socialLinks').firstOrFail()
+    const socialLinks = website.socialLinks.map((socialLink: SocialLink) => {
+      return {
+        platform: socialLink.platform,
+        url: socialLink.url,
+        is_active: socialLink.is_active,
+      }
+    })
     const contactSettings = {
       email: website.email,
       phoneNumber: website.phoneNumber,
-      socialLinks: website.socialLinks,
+      socialLinks: socialLinks,
     }
 
     return contactSettings
@@ -27,14 +34,14 @@ export default class ContactSettingsController {
       .where('uuid', uuid)
       .update({ email: updatedEmail, phoneNumber: updatedPhoneNumber })
 
-    if (updatedSocialLinks.length) {
+    if (updatedSocialLinks && updatedSocialLinks.length) {
       updatedSocialLinks.map(async (socialLink: SocialLink) => {
         await SocialLink.query()
           .where('websiteId', id)
           .where('platform', socialLink.platform)
           .update({
             url: socialLink.url,
-            isActive: socialLink.is_active,
+            is_active: socialLink.is_active,
           })
       })
     }
