@@ -3,6 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Page from '#models/page'
 
 export interface MenuPageProps {
+  id: Page['id']
   type: Page['type']
   uuid: Page['uuid']
   order: Page['order']
@@ -17,8 +18,9 @@ export default class MenusController {
     pages.map((page: Page) => {
       if (page.type === 'legal') return
 
-      const { type, uuid: pageUuid, order, isActive } = page
+      const { id, type, uuid: pageUuid, order, isActive } = page
       menuPages.push({
+        id,
         type,
         uuid: pageUuid,
         order,
@@ -28,7 +30,7 @@ export default class MenusController {
     return menuPages
   }
 
-  async update({ request, response }: HttpContext) {
+  async update({ request, response, params }: HttpContext) {
     const pages = Object.values(request.all())
     pages.map(async (page: MenuPageProps) => {
       await Page.query().where('uuid', page.uuid).update({
@@ -36,7 +38,11 @@ export default class MenusController {
         isActive: page.isActive,
       })
     })
+    const { pages: newPages } = await Website.query()
+      .where('uuid', params.uuid)
+      .preload('pages')
+      .firstOrFail()
 
-    return response.status(200).send('Menu updated successfully')
+    return response.status(200).send(newPages)
   }
 }
