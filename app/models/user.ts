@@ -1,12 +1,18 @@
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 import { beforeSave, column, hasMany } from '@adonisjs/lucid/orm'
 import { randomUUID } from 'node:crypto'
-
+import { withAuthFinder } from '@adonisjs/auth'
 import BasicModel from './base.js'
 import Websites from './website.js'
 import hash from '@adonisjs/core/services/hash'
+import { compose } from '@adonisjs/core/helpers'
 
-export default class User extends BasicModel {
+const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
+  uids: ['email'],
+  passwordColumnName: 'password',
+})
+
+export default class User extends compose(BasicModel, AuthFinder) {
   @column()
   declare username: string
 
