@@ -12,6 +12,7 @@ export default class extends BaseSchema {
     this.schema.dropTableIfExists('widgets')
     this.schema.dropTableIfExists('users')
     this.schema.dropTableIfExists('users_websites')
+    this.schema.dropTableIfExists('user_website')
 
     this.schema.createTable('websites', (table) => {
       table.increments('id')
@@ -155,7 +156,7 @@ export default class extends BaseSchema {
       table.timestamp('updated_at')
     })
 
-    this.schema.createTable('users_websites', (table) => {
+    this.schema.createTable('user_website', (table) => {
       table.increments('id')
       table.integer('website_id').unsigned().references('websites.id')
       table.integer('user_id').unsigned().references('users.id')
