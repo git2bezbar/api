@@ -9,13 +9,14 @@
 
 const AuthController = () => import('#controllers/auth_controller')
 import { middleware } from '#start/kernel'
-import router from '@adonisjs/core/services/router'
 
 const ContactSettingsController = () => import('#controllers/contact_settings_controller')
 const GeneralSettingsController = () => import('#controllers/general_settings_controller')
 const CustomizationsController = () => import('#controllers/customizations_controller')
 const PagesController = () => import('#controllers/pages_controller')
 const MenusController = () => import('#controllers/menus_controller')
+const WebsiteController = () => import('#controllers/website_controller')
+import router from '@adonisjs/core/services/router'
 
 router
   .group(() => {
@@ -80,5 +81,18 @@ router
   .group(() => {
     router.get('/account', [AuthController, 'index'])
     router.post('/account', [AuthController, 'update'])
+  })
+  .use(middleware.auth())
+
+/**
+ * Website generation & listing
+ */
+
+router
+  .group(() => {
+    // router.get('/generate', [MenusController, 'index'])
+    router.post('/generate', [WebsiteController, 'create'])
+    router.get('/website', [WebsiteController, 'getWebsite'])
+    router.get('/websites', [WebsiteController, 'getWebsites'])
   })
   .use(middleware.auth())
