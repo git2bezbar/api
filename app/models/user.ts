@@ -1,5 +1,5 @@
-import type { HasMany } from '@adonisjs/lucid/types/relations'
-import { beforeSave, column, hasMany } from '@adonisjs/lucid/orm'
+import type { ManyToMany } from '@adonisjs/lucid/types/relations'
+import { column, manyToMany } from '@adonisjs/lucid/orm'
 import { randomUUID } from 'node:crypto'
 import { withAuthFinder } from '@adonisjs/auth'
 import BasicModel from './base.js'
@@ -22,13 +22,6 @@ export default class User extends compose(BasicModel, AuthFinder) {
   @column()
   declare password: string
 
-  @beforeSave()
-  static async hashPassword(user: User) {
-    if (user.$dirty.password) {
-      user.password = await hash.make(user.password)
-    }
-  }
-
   @column()
   declare firstname: string
 
@@ -41,6 +34,6 @@ export default class User extends compose(BasicModel, AuthFinder) {
   @column({ prepare: (value: string) => (value ? value : randomUUID()) })
   declare reset_password_token: string
 
-  @hasMany(() => Websites)
-  declare websites: HasMany<typeof Websites>
+  @manyToMany(() => Websites)
+  declare websites: ManyToMany<typeof Websites>
 }

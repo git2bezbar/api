@@ -1,5 +1,5 @@
-import type { HasMany } from '@adonisjs/lucid/types/relations'
-import { column, hasMany } from '@adonisjs/lucid/orm'
+import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
+import { column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
 
 import BasicModel from './base.js'
 import Attachment from './attachement.js'
@@ -79,6 +79,6 @@ export default class Website extends BasicModel {
   @hasMany(() => Page)
   declare pages: HasMany<typeof Page>
 
-  @hasMany(() => User)
-  declare users: HasMany<typeof User>
+  @manyToMany(() => User)
+  declare users: ManyToMany<typeof User>
 }
