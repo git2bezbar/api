@@ -8,6 +8,8 @@
 */
 
 const AuthController = () => import('#controllers/auth_controller')
+import CategoriesController from '#controllers/categories_controller'
+import ProductsController from '#controllers/products_controller'
 import { middleware } from '#start/kernel'
 
 const ContactSettingsController = () => import('#controllers/contact_settings_controller')
@@ -65,6 +67,16 @@ router
       router.get('/menu', [MenusController, 'index'])
       router.post('/menu', [MenusController, 'update'])
     })
+
+    /**
+     * Products
+     */
+
+    router.group(() => {
+      router.get('/products', [ProductsController, 'index'])
+      router.post('/products', [ProductsController, 'update'])
+    })
+
   })
   .prefix('/:uuid')
   .use(middleware.auth())
@@ -90,9 +102,16 @@ router
 
 router
   .group(() => {
-    // router.get('/generate', [MenusController, 'index'])
     router.post('/generate', [WebsiteController, 'create'])
     router.get('/website', [WebsiteController, 'getWebsite'])
     router.get('/websites', [WebsiteController, 'getWebsites'])
   })
   .use(middleware.auth())
+
+/**
+ * Categories
+ */
+
+  router.group(() => {
+    router.get('/categories', [CategoriesController, 'index'])
+  })
