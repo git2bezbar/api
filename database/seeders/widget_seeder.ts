@@ -5,22 +5,14 @@ export default class extends BaseSeeder {
   async run() {
     await Widget.createMany([
       {
-        name: 'Texte + Image',
-        order: 2,
-        content: {
-          title: 'Les Dunes',
-          subtitle: 'Le meilleur du maghreb',
-          image: 3,
-          imagePosition: 'left',
-        },
-        pageId: 1,
-      },
-      {
         name: 'Texte',
-        order: 3,
+        order: 1,
         content: {
           title: 'Les Dunes',
           subtitle: 'Le meilleur du maghreb',
+          hasButton: true,
+          buttonContent: 'Voir la carte',
+          buttonLink: 'menu',
         },
         pageId: 1,
       },

@@ -4,12 +4,11 @@ import { BaseSeeder } from '@adonisjs/lucid/seeders'
 export default class extends BaseSeeder {
   async run() {
     await Category.createMany([
-      { name: 'Pâtes' },
-      { name: 'Grillades' },
+      { name: 'Entrées' },
+      { name: 'Plats' },
       { name: 'Salades' },
       { name: 'Boissons' },
       { name: 'Desserts' },
-      { name: 'Café et thé' },
     ])
   }
 }

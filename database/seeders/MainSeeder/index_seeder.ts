@@ -12,7 +12,7 @@ export default class extends BaseSeeder {
     await this.runSeeder(await import('../product_seeder.js'))
     await this.runSeeder(await import('../social_link_seeder.js'))
     await this.runSeeder(await import('../time_slot_seeder.js'))
-    await this.runSeeder(await import('../attachement_seeder.js'))
+    // await this.runSeeder(await import('../attachement_seeder.js'))
     await this.runSeeder(await import('../page_seeder.js'))
     await this.runSeeder(await import('../widget_seeder.js'))
   }
