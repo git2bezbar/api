@@ -70,6 +70,7 @@ export default class GeneralSettingsController {
           .update({
             openingTime: timeSlot.openingTime,
             closingTime: timeSlot.closingTime,
+            isActive: timeSlot.isActive,
           })
       })
     }
