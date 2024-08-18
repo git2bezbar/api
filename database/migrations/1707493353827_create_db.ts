@@ -49,10 +49,7 @@ export default class extends BaseSchema {
 
     this.schema.createTable('products', (table) => {
       table.increments('id')
-      table.string('name').notNullable()
-      table.string('description')
-      table.integer('price').notNullable()
-      table.integer('category_id').unsigned().references('categories.id')
+      table.json('content').notNullable()
       table
         .integer('website_id')
         .unsigned()
