@@ -9,6 +9,7 @@
 
 const AuthController = () => import('#controllers/auth_controller')
 import CategoriesController from '#controllers/categories_controller'
+import FrontController from '#controllers/front_controller'
 import ProductsController from '#controllers/products_controller'
 import { middleware } from '#start/kernel'
 
@@ -115,3 +116,19 @@ router
   router.group(() => {
     router.get('/categories', [CategoriesController, 'index'])
   })
+
+/**
+ * Dynamic render routes
+ */
+
+router
+  .group(() => {
+    router.get('/menu', [FrontController, 'menu'])
+    router.get('/contact-settings', [FrontController, 'contactSettings'])
+    router.get('/general-settings', [FrontController, 'generalSettings'])
+    router.get('/customization', [FrontController, 'customization'])
+    router.get('/categories', [CategoriesController, 'index'])
+    router.get('/products', [FrontController, 'products'])
+    router.get('/page/:pageType', [FrontController, 'page'])
+  })
+  .prefix('front/:uuid/')
